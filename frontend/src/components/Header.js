@@ -8,19 +8,19 @@ const Header = () => {
 				<Container>
 					<Navbar.Brand>BookShop</Navbar.Brand>
 					<Navbar.Toggle aria-controls='basic-navbar-nav' />
+					<Form inline>
+						<FormControl
+							type='text'
+							placeholder='Search'
+							className='ml-sm-2'
+						/>
+					</Form>
 					<Navbar.Collapse id='basic-navbar-nav'>
 						<Nav className='ml-auto'>
 							<Nav.Link href='#home'>Edit</Nav.Link>
 							<Nav.Link href='#cart'>Cart</Nav.Link>
 							<Nav.Link href='#link'>Log in</Nav.Link>
 						</Nav>
-						<Form inline>
-							<FormControl
-								type='text'
-								placeholder='Search'
-								className='ml-sm-2'
-							/>
-						</Form>
 					</Navbar.Collapse>
 				</Container>
 			</Navbar>

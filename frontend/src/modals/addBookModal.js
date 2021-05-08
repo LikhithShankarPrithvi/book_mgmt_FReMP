@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import { Modal, Form, Container, Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { addBook } from '../actions/bookActions'
 
-const AddBookModal = ({ history, showAddModal, setShowAddModal }) => {
+const AddBookModal = ({ showAddModal, setShowAddModal }) => {
+	let history = useHistory()
 	const [name, setName] = useState('')
 	const [author, setAuthor] = useState('')
 	const [publication_year, setPublication_year] = useState(0)
@@ -16,11 +18,11 @@ const AddBookModal = ({ history, showAddModal, setShowAddModal }) => {
 	const bookAdd = useSelector((state) => state.bookAdd)
 	const { loading, error, success } = bookAdd
 
-	// useEffect(() => {
-	// 	if (success) {
-	// 		history.push('/')
-	// 	}
-	// }, [dispatch, history, success])
+	useEffect(() => {
+		if (success) {
+			window.location.reload()
+		}
+	}, [dispatch, success])
 
 	const submitHandler = () => {
 		dispatch(
@@ -58,7 +60,7 @@ const AddBookModal = ({ history, showAddModal, setShowAddModal }) => {
 					<Form.Group controlId='author'>
 						<Form.Label>Author</Form.Label>
 						<Form.Control
-							type='author'
+							type='text'
 							placeholder='Enter Author name'
 							value={author}
 							onChange={(e) =>
@@ -68,7 +70,7 @@ const AddBookModal = ({ history, showAddModal, setShowAddModal }) => {
 					<Form.Group controlId='publication_year'>
 						<Form.Label>Publication Year</Form.Label>
 						<Form.Control
-							type='publication_year'
+							type='number'
 							placeholder='Enter Year'
 							value={publication_year}
 							onChange={(e) =>
@@ -78,7 +80,7 @@ const AddBookModal = ({ history, showAddModal, setShowAddModal }) => {
 					<Form.Group controlId='halt_year'>
 						<Form.Label>Publication End Year</Form.Label>
 						<Form.Control
-							type='halt_year'
+							type='number'
 							placeholder='Enter end Year'
 							value={halt_year}
 							onChange={(e) =>
@@ -88,7 +90,7 @@ const AddBookModal = ({ history, showAddModal, setShowAddModal }) => {
 					<Form.Group controlId='stock'>
 						<Form.Label>stock</Form.Label>
 						<Form.Control
-							type='stock'
+							type='number'
 							placeholder='Enter Stock Count'
 							value={stock}
 							onChange={(e) =>

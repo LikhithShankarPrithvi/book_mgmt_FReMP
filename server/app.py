@@ -8,7 +8,7 @@ import os
 app = Flask(__name__, static_folder="/frontend/build")
 
 client = MongoClient(
-    "mongodb+srv://shankar28:shankar28@studentid.8h5vs.mongodb.net/bookshop?retryWrites=true&w=majority")
+    MONGO_URI)
 db = client.bookshop
 books = db.books
 
@@ -34,3 +34,21 @@ def addBook():
     x = books.insert(req_data)
     print("X is :{0}".format(x))
     return ('', 201)
+
+
+@app.route('/editBook/<id>', methods=["PUT"])
+def editBook(id):
+    req_data = request.get_json()
+    filter = {'_id': ObjectId(id)}
+    newvalues = {"$set": req_data}
+    req_data.pop('_id')
+    books.update(
+        filter, newvalues
+    )
+    return ('', 201)
+
+
+@app.route('/book/<id>', methods=["DELETE"])
+def deleteBook(id):
+    books.delete_one({"_id": ObjectId(id)})
+    return ("Deleted Successfully", 201)

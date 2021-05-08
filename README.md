@@ -7,7 +7,9 @@ To view the working model
 -   Initialize the server, to do that **go to server directory** and type these commands
 
     > source venv/bin/activate
+
     > export FLASK_APP=app.py
+
     > python3 -m flask run
 
 -   Now the server is running, initiate the client i.e.,. the frontend, before that,
@@ -15,6 +17,7 @@ To view the working model
 -   install react-scripts using node package manager in frontend (below)
 
     > cd book_mgmt_FReMP/frontend
+
     > npm i react-scripts
 
 -   Now start the react app using
